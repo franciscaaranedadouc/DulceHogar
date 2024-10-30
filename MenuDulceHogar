@@ -1,0 +1,75 @@
+package dulcehogar;
+
+import java.util.ArrayList; // Importo clase ArrayList
+import java.util.Scanner; // Importo clase Scanner
+
+public class DulceHogar {
+    public static void main(String[] menu) {
+        Scanner teclado = new Scanner(System.in);
+        int opcion;
+
+        // Bucle del menú interactivo
+        do {
+            System.out.println("\n   Menu Sistema Dulce Hogar   ");
+            System.out.println("\n1. Registrar socio");
+            System.out.println("2. Ver datos del socio");
+            System.out.println("3. Cancelar cuota");
+            System.out.println("4. Consultar cuota cancelada");
+            System.out.println("5. Consultar total de cuotas pagadas por el socio");
+            System.out.println("6. Salir del programa");
+            System.out.print("\nSeleccione una opcion: ");
+            opcion = teclado.nextInt();
+
+            // Se ejeuta instrucción switch con 6 casos para seleccionar una opción del menú
+            switch(opcion) {
+                case 1:
+                    registrarSocio();
+                    break;
+                case 2:
+                    verDatosSocio();
+                    break;
+                case 3:
+                    cancelarCuota();
+                    break;
+                case 4:
+                    consultarCuotaCancelada();
+                    break;
+                case 5:
+                    consultarTotalCuotasPagadas();
+                    break;
+                case 6:
+                    System.out.println("Ha seleccionado la opcion < Salir del Programa >");
+                    break;
+                default:
+                    System.out.println("Opción invalida");
+            }
+        } while (opcion != 6);
+        teclado.close();  // Cerrar el Scanner
+    }
+    
+    // Métodos de cada opción
+    public static void registrarSocio() {
+        System.out.println("Registrar Socio - Funcionalidad en construcción.");
+    }
+
+    public static void verDatosSocio() {
+        System.out.println("Ver datos del Socio - Funcionalidad en construcción.");
+    }
+
+    public static void cancelarCuota() {
+        System.out.println("Cancelar Cuota - Funcionalidad en construcción.");
+    }
+
+    public static void consultarCuotaCancelada() {
+        System.out.println("Consultar cuota cancelada - Funcionalidad en construcción.");
+    }
+
+    public static void consultarTotalCuotasPagadas() {
+        System.out.println("Consultar total de cuotas pagadas por el socio - Funcionalidad en construcción.");
+    }
+}
+
+
+
+
+
