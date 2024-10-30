@@ -38,7 +38,7 @@ public class DulceHogar {
                     consultarTotalCuotasPagadas();
                     break;
                 case 6:
-                    System.out.println("Ha seleccionado la opcion < Salir del Programa >");
+                    System.out.println("\nHa seleccionado la opcion 6. Salir del programa");
                     break;
                 default:
                     System.out.println("Opción invalida");
@@ -46,29 +46,75 @@ public class DulceHogar {
         } while (opcion != 6);
         teclado.close();  // Cerrar el Scanner
     }
-    
     // Métodos de cada opción
+    
     public static void registrarSocio() {
-        System.out.println("Registrar Socio - Funcionalidad en construcción.");
+        System.out.println("\nHa seleccionado la opcion 1. Registrar socio\n");
+        Scanner teclado = new Scanner(System.in);
+       
+        System.out.print("Ingrese número de socio: ");
+        int numeroSocio = teclado.nextInt();
+        teclado.nextLine(); // Limpiar el buffer
+
+        System.out.print("Ingrese RUT (Ej: 22.342.753-0): ");
+        String rut = teclado.nextLine();
+        while (!validarRut(rut)) {
+            System.out.print("RUT inválido. Ingrese nuevamente: ");
+            rut = teclado.nextLine();
+        }
+
+        System.out.print("Ingrese nombre: ");
+        String nombre = teclado.nextLine();
+
+        System.out.print("Ingrese apellido paterno: ");
+        String apellidoPaterno = teclado.nextLine();
+
+        System.out.print("Ingrese apellido materno: ");
+        String apellidoMaterno = teclado.nextLine();
+
+        System.out.print("Ingrese correo: ");
+        String correo = teclado.nextLine();
+
+        System.out.print("Ingrese domicilio: ");
+        String domicilio = teclado.nextLine();
+
+        System.out.print("Ingrese región: ");
+        String region = teclado.nextLine();
+
+        System.out.print("Ingrese ciudad: ");
+        String ciudad = teclado.nextLine();
+
+        System.out.print("Ingrese comuna: ");
+        String comuna = teclado.nextLine();
+
+        System.out.print("Ingrese teléfono: ");
+        String telefono = teclado.nextLine();
+
+        // Crear objeto Socio
+        Socio nuevoSocio = new Socio(numeroSocio, rut, nombre, apellidoPaterno, apellidoMaterno, correo, domicilio,region, ciudad, comuna, telefono);
+
+        // Imprimir mensaje de éxito
+        System.out.println("¡Cliente registrado exitosamente!");
     }
 
+    // Método para validar el RUT
+    public static boolean validarRut(String rut) {
+        return rut.length() >= 11 && rut.length() <= 12; // Validación de longitud
+    }
+    
     public static void verDatosSocio() {
-        System.out.println("Ver datos del Socio - Funcionalidad en construcción.");
+        System.out.println("\nHa seleccionado la opcion 2. Ver datos del socio\n");
     }
-
     public static void cancelarCuota() {
-        System.out.println("Cancelar Cuota - Funcionalidad en construcción.");
+        System.out.println("\nHa seleccionado la opcion 3. Cancelar cuota\n");
     }
-
     public static void consultarCuotaCancelada() {
-        System.out.println("Consultar cuota cancelada - Funcionalidad en construcción.");
+        System.out.println("\nHa seleccionado la opcion 4. Consultar cuota cancelada\n");
     }
-
     public static void consultarTotalCuotasPagadas() {
-        System.out.println("Consultar total de cuotas pagadas por el socio - Funcionalidad en construcción.");
+        System.out.println("\nHa seleccionado la opcion 5. Consultar total de cuotas pagadas por el socio\n");
     }
 }
-
 
 
 
