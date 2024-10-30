@@ -1,6 +1,10 @@
+package dulcehogar;
+
+// Esta clase contiene los atributos de la opción 1 del menú
+
 public class Socio {
-    private int numeroSocio; // Número de socio, 9 dígitos
-    private String rut; // Ej: 22.342.753-0
+    private int numeroSocio;
+    private String rut;
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
@@ -10,13 +14,12 @@ public class Socio {
     private String ciudad;
     private String comuna;
     private String telefono;
-    private CuentaSocio cuentaSocio; // Asocia una cuenta a cada socio
+    private double cuenta;
 
-    // Constructor con parámetros que incluye validaciones
-    public Socio(int numeroSocio, String rut, String nombre, String apellidoPaterno, String apellidoMaterno,
-                 String correo, String domicilio, String region, String ciudad, String comuna, String telefono) {
+    // Constructor con parámetros
+    public Socio(int numeroSocio, String rut, String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String domicilio, String region, String ciudad, String comuna, String telefono) {
         this.numeroSocio = numeroSocio;
-        setRut(rut); // Valida el RUT durante la asignación
+        this.rut = rut;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
@@ -26,45 +29,6 @@ public class Socio {
         this.ciudad = ciudad;
         this.comuna = comuna;
         this.telefono = telefono;
-        this.cuentaSocio = new CuentaSocio(0); // Inicializa la cuenta en 0 pesos
-    }
-
-    // Validación del RUT: entre 11 y 12 caracteres, incluyendo puntos y guion
-    public void setRut(String rut) {
-        if (rut.length() >= 11 && rut.length() <= 12) {
-            this.rut = rut;
-        } else {
-            throw new IllegalArgumentException("El RUT debe tener entre 11 y 12 caracteres.");
-        }
-    }
-
-    // Getters y setters (algunos ejemplos)
-    public int getNumeroSocio() {
-        return numeroSocio;
-    }
-
-    public String getRut() {
-        return rut;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public CuentaSocio getCuentaSocio() {
-        return cuentaSocio;
-    }
-
-    // Método para ver todos los datos del socio
-    public void verDatosSocio() {
-        System.out.println("Número de Socio: " + numeroSocio);
-        System.out.println("RUT: " + rut);
-        System.out.println("Nombre: " + nombre + " " + apellidoPaterno + " " + apellidoMaterno);
-        System.out.println("Correo: " + correo);
-        System.out.println("Domicilio: " + domicilio + ", " + comuna + ", " + ciudad + ", " + region);
-        System.out.println("Teléfono: " + telefono);
-        System.out.println("Valor Cuota: " + cuentaSocio.getValorCuota());
-        System.out.println("Cantidad Aportada: " + cuentaSocio.getCantidadAportada());
+        this.cuenta = 0;
     }
 }
-
