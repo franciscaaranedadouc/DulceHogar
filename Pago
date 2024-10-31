@@ -1,0 +1,28 @@
+
+package dulcehogar;
+
+
+public class Pago {
+    private int idPago;//PK
+    Socio numeroSocio; //FK
+    private double montoPago;
+    
+public Pago (int idPago, double montoPago, Socio numeroSocio){
+    this.idPago = idPago;
+    this.numeroSocio= numeroSocio;
+    this.montoPago= montoPago;
+}
+    public int getIdPago(){
+        return idPago;
+    }
+    public Socio getNumeroSocio (){
+        return numeroSocio;   
+    }   
+    public double getMontoPago (){
+        return montoPago;
+    }
+@Override
+    public String toString (){
+            return "Id Pago:" + idPago + "\n Numero Socio:" + numeroSocio + "\n Monto pago:"+ montoPago;
+    }
+}
