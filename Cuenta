@@ -1,0 +1,28 @@
+package dulcehogar;
+
+public class Cuenta {
+    Socio numeroSocio; //FK
+    double valorCuota;
+    int cantidadAportada;
+
+    public Cuenta (Socio numeroSocio, double valorCuota, int cantidadAportada )
+    {   this.numeroSocio= numeroSocio;
+        this.valorCuota= valorCuota;
+        this.cantidadAportada = cantidadAportada;
+
+    }
+    public Socio getNumeroSocio (){
+        return numeroSocio;
+    }
+    public double getValorCuota (){
+        return valorCuota;
+    }
+    public int cantidadAportada (){
+        return cantidadAportada;
+
+    }
+    @Override
+    public String toString (){
+        return "numero Socio:" + numeroSocio + "\n Valor Cuota:"+ valorCuota + "\n Cantidad Aprobada:"+ cantidadAportada;
+    }
+}
