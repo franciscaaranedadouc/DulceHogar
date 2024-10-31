@@ -1,9 +1,9 @@
 package dulcehogar;
 
 public class Cuenta {
-    Socio numeroSocio; //FK
-    double valorCuota;
-    int cantidadAportada;
+    private Socio numeroSocio; //FK
+    private double valorCuota;
+    private int cantidadAportada;
 
     public Cuenta (Socio numeroSocio, double valorCuota, int cantidadAportada )
     {   this.numeroSocio= numeroSocio;
@@ -23,6 +23,6 @@ public class Cuenta {
     }
     @Override
     public String toString (){
-        return "numero Socio:" + numeroSocio + "\n Valor Cuota:"+ valorCuota + "\n Cantidad Aprobada:"+ cantidadAportada;
+        return "numero Socio:" + numeroSocio + "\n Valor Cuota:"+ valorCuota + "\n Cantidad Aportada:"+ cantidadAportada;
     }
 }
