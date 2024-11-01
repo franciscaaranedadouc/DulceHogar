@@ -4,6 +4,8 @@ import java.util.ArrayList; // Importo clase ArrayList
 import java.util.Scanner; // Importo clase Scanner
 
 public class DulceHogar {
+    private static Socio socioRegistrado = null;
+
     public static void main(String[] menu) {
         Scanner teclado = new Scanner(System.in);
         int opcion;
@@ -38,70 +40,21 @@ public class DulceHogar {
                     consultarTotalCuotasPagadas();
                     break;
                 case 6:
-                    System.out.println("\nHa seleccionado la opcion 6. Salir del programa");
                     break;
                 default:
-                    System.out.println("Opción invalida");
+                    System.out.println("\nError. Seleccione una de las 6 opciones del menu");
             }
         } while (opcion != 6);
         teclado.close();  // Cerrar el Scanner
     }
-    // Métodos de cada opción
-    
+
+    // Método opción 1. registrar socio
     public static void registrarSocio() {
-        System.out.println("\nHa seleccionado la opcion 1. Registrar socio\n");
-        Scanner teclado = new Scanner(System.in);
+        socioRegistrado = new Socio();  // Crear una nueva instancia de Socio
+        socioRegistrado.registrarSocio();  // Llamar al método de registro en Clase Socio
+    }
        
-        System.out.print("Ingrese número de socio: ");
-        int numeroSocio = teclado.nextInt();
-        teclado.nextLine(); // Limpiar el buffer
-
-        System.out.print("Ingrese RUT (Ej: 22.342.753-0): ");
-        String rut = teclado.nextLine();
-        while (!validarRut(rut)) {
-            System.out.print("RUT inválido. Ingrese nuevamente: ");
-            rut = teclado.nextLine();
-        }
-
-        System.out.print("Ingrese nombre: ");
-        String nombre = teclado.nextLine();
-
-        System.out.print("Ingrese apellido paterno: ");
-        String apellidoPaterno = teclado.nextLine();
-
-        System.out.print("Ingrese apellido materno: ");
-        String apellidoMaterno = teclado.nextLine();
-
-        System.out.print("Ingrese correo: ");
-        String correo = teclado.nextLine();
-
-        System.out.print("Ingrese domicilio: ");
-        String domicilio = teclado.nextLine();
-
-        System.out.print("Ingrese región: ");
-        String region = teclado.nextLine();
-
-        System.out.print("Ingrese ciudad: ");
-        String ciudad = teclado.nextLine();
-
-        System.out.print("Ingrese comuna: ");
-        String comuna = teclado.nextLine();
-
-        System.out.print("Ingrese teléfono: ");
-        String telefono = teclado.nextLine();
-
-        // Crear objeto Socio
-        Socio nuevoSocio = new Socio(numeroSocio, rut, nombre, apellidoPaterno, apellidoMaterno, correo, domicilio,region, ciudad, comuna, telefono);
-
-        // Imprimir mensaje de éxito
-        System.out.println("¡Cliente registrado exitosamente!");
-    }
-
-    // Método para validar el RUT
-    public static boolean validarRut(String rut) {
-        return rut.length() >= 11 && rut.length() <= 12; // Validación de longitud
-    }
-    
+    // Método opción 2. ver datos del socio 
     public static void verDatosSocio() {
         Scanner teclado = new Scanner(System.in);
         System.out.println("\nHa seleccionado la opcion 2. Ver datos del socio\n");
