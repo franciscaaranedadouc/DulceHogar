@@ -1,6 +1,8 @@
 package dulcehogar;
 
-// Esta clase contiene los atributos de la opción 1 del menú
+import java.util.Scanner;
+import java.util.Random; 
+import java.util.HashMap;
 
 public class Socio {
     private int numeroSocio;
@@ -14,10 +16,14 @@ public class Socio {
     private String ciudad;
     private String comuna;
     private String telefono;
-    private double cuenta;
+
+    // Constructor sin parámetros
+    public Socio() {
+    }
 
     // Constructor con parámetros
-    public Socio(int numeroSocio, String rut, String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String domicilio, String region, String ciudad, String comuna, String telefono) {
+    public Socio(int numeroSocio, String rut, String nombre, String apellidoPaterno, String apellidoMaterno,
+            String correo, String domicilio, String region, String ciudad, String comuna, int telefono) {
         this.numeroSocio = numeroSocio;
         this.rut = rut;
         this.nombre = nombre;
@@ -29,16 +35,224 @@ public class Socio {
         this.ciudad = ciudad;
         this.comuna = comuna;
         this.telefono = telefono;
-        this.cuenta = 0;
     }
-//Getters
-    public int getNumeroSocio(){
+
+    // Método para ingresar y validar numeroSocio
+    public void crearNumeroSocio() {
+        Scanner leer = new Scanner(System.in);
+        do {
+            System.out.println("\n - Ingrese el numero de socio: ");
+            int nroSocioIngresado = leer.nextInt();
+            if (String.valueOf(nroSocioIngresado).length() == 9) {
+                this.numeroSocio = nroSocioIngresado;
+                break; // Salir del bucle
+            } else {
+                System.out.println("\nNumero de socio invalido. Debe tener exactamente 9 digitos");
+            }
+        } while (true);
+    }
+
+    // Método para ingresar y validar rut
+    public void ingresarRut() {
+        Scanner leer = new Scanner(System.in);
+        do {
+            System.out.println(" - Ingrese el RUT: ");
+            String rut = leer.nextLine();
+
+            // Validar longitud del RUT
+            if (rut.length() >= 11 && rut.length() <= 12) {
+                boolean tieneNumero = false;
+                boolean tieneLetra = false;
+                boolean formatoValido = true;
+
+                // Validar el formato y los caracteres
+                for (int i = 0; i < rut.length(); i++) {
+                    char caracter = rut.charAt(i);
+                    if (Character.isDigit(caracter)) {
+                        tieneNumero = true;
+                    } else if (Character.isLetter(caracter)) {
+                        tieneLetra = true;
+                    } else if (caracter != '.' && caracter != '-') {
+                        formatoValido = false; // Si hay un carácter no válido
+                        break;
+                    }
+                }
+
+                // Validar si hay al menos un número y formato es válido
+                if (tieneNumero && formatoValido) {
+                    // Validar el formato completo usando expresión regular
+                    String regex = "^(\\d{1,2}\\.\\d{3}\\.\\d{3}-[0-9K])$"; // Permite 1 o 2 dígitos al inicio
+                    if (rut.matches(regex)){ 
+                        this.rut = rut; // Almacena el RUT en la instancia
+                        break; // Salir del bucle
+                    }    
+                }
+            }
+            System.out.println("\nRUT invalido. Ingresar como 22.242.123-K\n");
+        } while (true);
+    }
+
+    // Método para ingresar y validar teléfono
+    public void crearNumeroTel() {
+        Scanner leer = new Scanner(System.in);
+        do {
+            System.out.println(" - Ingrese el numero de telefono: ");
+            int nroTelonoIngresado = leer.nextInt();
+            if (String.valueOf(nroTelonoIngresado).length() == 8) {
+                this.telefono = nroTelonoIngresado;
+                break; // Salir del bucle
+            } else {
+                System.out.println("\nNumero de telefono invalido. Debe tener exactamente 8 digitos\n");
+            }
+        } while (true);
+    }
+    
+    // Método para opción 1 del menú (en clase DulceHogar) se llama a este método
+    public void registrarSocio() {
+        Scanner leer = new Scanner(System.in);
+    
+        // Llamo al método que ingresa y valida el número de socio
+        crearNumeroSocio();
+    
+        ingresarRut(); // Reuso al método que valida RUT
+
+        // Validar que el nombre no esté vacío
+        do {
+            System.out.print(" - Ingrese Nombre: ");
+            this.nombre = leer.nextLine().trim(); // Eliminar espacios en blanco adicionales
+            if (!this.nombre.isEmpty()) {
+                break; // Salir del bucle si se ingresó un nombre válido
+            }
+            System.out.println("Por favor, ingrese un nombre");
+        } while (true);
+
+        // Validar que el apellido paterno no esté vacío
+        do {
+            System.out.print(" - Ingrese Apellido Paterno: ");
+            this.apellidoPaterno = leer.nextLine().trim();
+            if (!this.apellidoPaterno.isEmpty()) {
+                break; // Salir del bucle si se ingresó un apellido válido
+            }
+            System.out.println("Por favor, ingrese un apellido");
+        } while (true);
+
+        System.out.print(" - Ingrese Apellido Materno: ");
+        this.apellidoMaterno = leer.nextLine();
+
+        System.out.print(" - Ingrese Correo: ");
+        this.correo = leer.nextLine();
+
+        System.out.print(" - Ingrese Domicilio: ");
+        this.domicilio = leer.nextLine();
+
+        System.out.print(" - Ingrese Region: ");
+        this.region = leer.nextLine();
+
+        System.out.print(" - Ingrese Ciudad: ");
+        this.ciudad = leer.nextLine();
+
+        System.out.print(" - Ingrese Comuna: ");
+        this.comuna = leer.nextLine();
+        
+        crearNumeroTel(); // Reuso método que ingresa y valida el número de teléfono
+
+        System.out.println("\n     Socio registrado exitosamente\n     A continuacion, sera redirigido al menu principal");
+    }
+
+    // Getters y Setters
+    public int getNumeroSocio() {
         return numeroSocio;
-        
     }
-    @Override
-    public String toString(){
-        return "numero Socio:" + numeroSocio + "\nNombre:" + nombre + "\n Apellido Paterno: "+ apellidoPaterno+ "\n Apellido Materno:"+ apellidoMaterno+"\n Correo:"+ correo+"\n Region:" +region+ "\n Cuidad: "+ ciudad + "\n Comuna: " + comuna + "\n Telefono:"+ telefono + "\n Cuenta:" + cuenta;
-        
-    }                                                                                                                                                                       
+
+    public String getRut() {
+        return rut;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+    
+    public String getApellidoPaterno() {
+        return apellidoPaterno;
+    }
+    
+    public String getApellidoMaterno() {
+        return apellidoMaterno;
+    }
+    
+    public String getCorreo() {
+        return correo;
+    }
+
+    public String getDomicilio() {
+        return domicilio;
+    }
+
+    public String getRegion() {
+        return region;
+    }    
+
+    public String getCiudad() {
+        return ciudad;
+    }    
+ 
+    public String getComuna() {
+        return comuna;
+    }   
+    
+    public int getTelefono() {
+        return telefono;
+    }
+    
+    public void setNumeroSocio(int numeroSocio) {
+        this.numeroSocio = numeroSocio;
+    }
+     
+    public void setRut(String rut) {
+        this.rut = rut;
+    }
+    
+    public void setNombre(String nombre) {
+        if (nombre != null && !nombre.trim().isEmpty()) {
+            this.nombre = nombre;
+        } else {
+            throw new IllegalArgumentException("Por favor ingrese el nombre");
+        }
+    }
+
+    public void setApellidoPaterno(String apellidoPaterno) {
+        if (apellidoPaterno != null && !apellidoPaterno.trim().isEmpty()) {
+            this.apellidoPaterno = apellidoPaterno;
+        } else {
+            throw new IllegalArgumentException("Por favor ingrese el apellido");
+        }
+    }
+
+    public void setApellidoMaterno(String apellidoMaterno) {
+        this.apellidoMaterno = apellidoMaterno;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public void setDomicilio(String domicilio) {
+        this.domicilio = domicilio;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+
+    public void setComuna(String comuna) {
+        this.comuna = comuna;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }                                                                                                                                                  
 }
