@@ -103,10 +103,50 @@ public class DulceHogar {
     }
     
     public static void verDatosSocio() {
+        Scanner teclado = new Scanner(System.in);
         System.out.println("\nHa seleccionado la opcion 2. Ver datos del socio\n");
+        System.out.print("Ingrese número de socio: ");
+        int numeroSocio = teclado.nextInt();
+        
+        Socio socioEncontrado = null;
+        for (Socio socio : socios) {
+            if(socio.getNumeroSocio()== numeroSocio){
+                socioEncontrado= socio;
+                break;
+            }
+        }       
+        if (socioEncontrado != null){
+             System.out.println("Datos del cliente:\n"+ socioEncontrado);
+        }else{
+            System.out.println("No se encontró un cliente con el numero proporcionado");
+        }
     }
     public static void cancelarCuota() {
+        Scanner teclado = new Scanner (System.in);
         System.out.println("\nHa seleccionado la opcion 3. Cancelar cuota\n");
+        System.out.print("Ingrese número de socio: ");
+        int numeroSocio =teclado.nextInt();
+        
+        Socio socioEncontrado = null;
+        for (Socio socio : socios){
+            if (socio.getNumeroSocio()== numeroSocio){
+                socioEncontrado=socio;
+                break;
+            }
+        }
+        if (socioEncontrado!= null){
+            System.out.print ("Ingrese el numero de cuota a cancelar:");
+            int numeroCuota=teclado.nextInt();
+            boolean cuotaCancelada= socioEncontrado.cancelarCuota (numeroCuota);
+            
+                 if (cuotaCancelada) {
+                System.out.println("¡Cuota cancelada exitosamente!");
+            } else {
+                System.out.println("No se encontró una cuota con ese número, o ya está cancelada.");
+            }
+        } else {
+            System.out.println("No se encontró un cliente con el número proporcionado");
+        }
     }
     public static void consultarCuotaCancelada() {
         System.out.println("\nHa seleccionado la opcion 4. Consultar cuota cancelada\n");
